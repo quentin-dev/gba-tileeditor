@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <iostream>
 #include "editorwindow.h"
 #include "newdialog.h"
 #include "ui_mainwindow.h"
@@ -223,7 +224,7 @@ void EditorWindow::on_open() {
 
 /* used for saving stuff */
 QString EditorWindow::get_save_name() {
-    QString f = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("Map Headers (*.h)"));
+    QString f = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("Map Headers (*.h);;Map Source Files (*.h & *.c)"), &chosen_save_filter);
     return f;
 }
 
@@ -250,6 +251,7 @@ void EditorWindow::on_save() {
 void EditorWindow::on_save_as() {
     filename_valid = true;
     filename = get_save_name();
+    // std::cout << chosen_save_filter.toStdString() << '\n';
     if (filename != "") {
         save_to_file();
     }

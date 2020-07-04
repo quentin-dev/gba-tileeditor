@@ -40,6 +40,7 @@ class EditorWindow : public QMainWindow {
         /* the filename, and whether it is valid at all */
         bool filename_valid;
         QString  filename;
+        QString chosen_save_filter;
 
         /* used for saving stuff */
         QString get_save_name();
