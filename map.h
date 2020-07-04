@@ -25,6 +25,8 @@ class Map {
         /* do the tile lookup in the order that the GBA requires */
         int* lookup_tile(int& sb, int& row, int& col, int& above, int& left);
 
+        void write_header(const std::string& filename);
+
     public:
         Map(int width, int height, bool regular);
         Map();

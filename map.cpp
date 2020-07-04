@@ -234,9 +234,28 @@ bool Map::read(const std::string& filename) {
     return true;
 }
 
+void Map::write_header(const std::string &filename)
+{
+    QFileInfo info(filename.c_str());
+
+    std::ofstream header_file(info.path().toStdString() + '/' + info.baseName().toStdString() + ".hh");
+
+    if (!header_file.is_open())
+    {
+        std::cerr << "Could not create header file!\n";
+        return;
+    }
+
+    header_file << "/*\n" << "Created by GBA Tile Editor Expansion\n"
+                << (regular ? "regular" : "affine") <<  " map\n*/\n\n";
+
+}
+
 /* write this map into a file */
 void Map::write(const std::string& filename) {
     FILE* f = fopen(filename.c_str(), "w");
+
+    write_header(filename);
 
     /* find the name which is filename with .h cut off */
     QFileInfo info(filename.c_str());
