@@ -26,6 +26,7 @@ class Map {
         int* lookup_tile(int& sb, int& row, int& col, int& above, int& left);
 
         void write_header(const std::string& filename);
+        void write_data(const std::string& filename, bool header_only = false);
 
     public:
         Map(int width, int height, bool regular);

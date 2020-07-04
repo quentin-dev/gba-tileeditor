@@ -4,6 +4,7 @@
 #include <QFileInfo>
 #include <stdio.h> 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -248,7 +249,7 @@ void Map::write_header(const std::string &filename)
     }
 
     header_file << "/*\n" << "Created by GBA Tile Editor Expansion\n"
-                << (regular ? "Regular" : "Affine") <<  " map\n*/\n\n"
+                << (regular ? "Regular" : "Affine") <<  " map header\n*/\n\n"
                 << "#ifndef GBA_TILE_" << info.baseName().toUpper().toStdString() << "_H\n"
                 << "#define GBA_TILE_" << info.baseName().toUpper().toStdString() << "_H\n\n"
                 << "#define " << name << "_width " << width << '\n'
@@ -261,11 +262,76 @@ void Map::write_header(const std::string &filename)
 
 }
 
+void Map::write_data(const std::string &filename, bool header_only)
+{
+    QFileInfo info(filename.c_str());
+    std::string name(info.baseName().toStdString());
+
+    char file_ending = (header_only) ? 'h' : 'c';
+
+    std::string complete_path(info.path().toStdString() + '/' + name + '.' + file_ending);
+
+    std::ofstream data_file(complete_path);
+
+    if (!data_file.is_open())
+    {
+        std::cerr << "Could not create data file!\n";
+        return;
+    }
+
+    data_file << "/*\n" << "Created by GBA Tile Editor Expansion\n"
+              << (regular ? "Regular" : "Affine") <<  " map data\n*/\n\n"
+              << "const unsigned " << (regular ? "short" : "char") << ' ' << name << '[' << width * height << "] = {\n    ";
+
+    /* start line break counter */
+    int counter = 0;
+
+    /* start the complex indexing loop operation */
+    int sb = 0;
+    int above = 0;
+    int left = 0;
+    int row = 0;
+    int col = 0;
+    int* tile = nullptr;
+
+    /* grab the next tile we need to write into */
+    while ((tile = lookup_tile(sb, row, col, above, left)))
+    {
+        /* dump it into the file
+         * regular backgrounds use 16-bit indices, affine ones use 8-bit ones */
+        if (!regular)
+        {
+            // fprintf(f, "0x%02x, ", (unsigned char)(*tile));
+            data_file << "0x" << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned char>(*tile) << ", ";
+        }
+        else
+        {
+            //fprintf(f, "0x%04x, ", (unsigned short)(*tile));
+            data_file << "0x" << std::hex << std::setw(4) << std::setfill('0') << static_cast<unsigned short>(*tile) << ", ";
+        }
+
+        counter++;
+        if (counter >= 9) {
+            data_file << "\n    ";
+            counter = 0;
+        }
+    }
+
+    /* write postamble stuff */
+    if (counter)
+    {
+        data_file << '\n';
+    }
+
+    data_file << "};\n\n";
+}
+
 /* write this map into a file */
 void Map::write(const std::string& filename) {
     FILE* f = fopen(filename.c_str(), "w");
 
     write_header(filename);
+    write_data(filename);
 
     /* find the name which is filename with .h cut off */
     QFileInfo info(filename.c_str());
