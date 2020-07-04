@@ -237,8 +237,9 @@ bool Map::read(const std::string& filename) {
 void Map::write_header(const std::string &filename)
 {
     QFileInfo info(filename.c_str());
+    std::string name = info.baseName().toStdString();
 
-    std::ofstream header_file(info.path().toStdString() + '/' + info.baseName().toStdString() + ".hh");
+    std::ofstream header_file(info.path().toStdString() + '/' + name + ".h");
 
     if (!header_file.is_open())
     {
@@ -247,7 +248,16 @@ void Map::write_header(const std::string &filename)
     }
 
     header_file << "/*\n" << "Created by GBA Tile Editor Expansion\n"
-                << (regular ? "regular" : "affine") <<  " map\n*/\n\n";
+                << (regular ? "Regular" : "Affine") <<  " map\n*/\n\n"
+                << "#ifndef GBA_TILE_" << info.baseName().toUpper().toStdString() << "_H\n"
+                << "#define GBA_TILE_" << info.baseName().toUpper().toStdString() << "_H\n\n"
+                << "#define " << name << "_width " << width << '\n'
+                << "#define " << name << "_height " << height << "\n\n"
+                << "#define " << name << "_len " << width * height << '\n'
+                << "extern const " << (regular ? "short" : "char") << ' ' << name << '[' << width * height << "];\n";
+
+
+    header_file << "\n#endif\n";
 
 }
 
