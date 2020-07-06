@@ -6,3 +6,4 @@
 3. Add a multi-tile select along with copy and paster feature.  This will be
    tricky, but make the program *much* more pleasant to use.
 4. Update C++ usage, from C-style to modern C++
+5. Update README, add usage instructions and / or tutorials
