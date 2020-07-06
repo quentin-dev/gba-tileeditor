@@ -157,7 +157,7 @@ bool Map::read(const std::string& filename) {
 
     /* check our little signature is there */
     if (!std::getline(f, line)) return false;
-    if (line != "/* created by GBA Tile Editor") {
+    if (line != "/* Created by GBA Tile Editor") {
         return false;
     }
 
@@ -168,9 +168,9 @@ bool Map::read(const std::string& filename) {
         std::string type;
         iss >> type;
 
-        if (type == "regular") {
+        if (type == "Regular") {
             this->regular = true;
-        } else if (type == "affine") {
+        } else if (type == "Affine") {
             this->regular = false;
         } else {
             return false;
@@ -248,7 +248,7 @@ void Map::write_header(const std::string &filename)
         return;
     }
 
-    header_file << "/*\n" << "Created by GBA Tile Editor Expansion\n"
+    header_file << "/* Created by GBA Tile Editor\n"
                 << (regular ? "Regular" : "Affine") <<  " map header\n*/\n\n"
                 << "#ifndef GBA_TILE_" << info.baseName().toUpper().toStdString() << "_H\n"
                 << "#define GBA_TILE_" << info.baseName().toUpper().toStdString() << "_H\n\n"
@@ -279,7 +279,7 @@ void Map::write_data(const std::string &filename, bool header_only)
         return;
     }
 
-    data_file << "/*\n" << "Created by GBA Tile Editor Expansion\n"
+    data_file << "/* Created by GBA Tile Editor\n"
               << (regular ? "Regular" : "Affine") <<  " map data\n*/\n\n"
               << "const unsigned " << (regular ? "short" : "char") << ' ' << name << '[' << width * height << "] = {\n    ";
 
@@ -301,12 +301,10 @@ void Map::write_data(const std::string &filename, bool header_only)
          * regular backgrounds use 16-bit indices, affine ones use 8-bit ones */
         if (!regular)
         {
-            // fprintf(f, "0x%02x, ", (unsigned char)(*tile));
             data_file << "0x" << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned char>(*tile) << ", ";
         }
         else
         {
-            //fprintf(f, "0x%04x, ", (unsigned short)(*tile));
             data_file << "0x" << std::hex << std::setw(4) << std::setfill('0') << static_cast<unsigned short>(*tile) << ", ";
         }
 
@@ -338,8 +336,8 @@ void Map::write(const std::string& filename) {
     std::string name = info.baseName().toStdString();
 
     /* write preamble stuff */
-    fprintf(f, "/* created by GBA Tile Editor\n");
-    fprintf(f, "   %s map */\n\n", regular ? "regular" : "affine");
+    fprintf(f, "/* Created by GBA Tile Editor\n");
+    fprintf(f, "   %s map */\n\n", regular ? "Regular" : "Affine");
     fprintf(f, "#define %s_width %d\n", name.c_str(), width);
     fprintf(f, "#define %s_height %d\n\n", name.c_str(), height);
 
