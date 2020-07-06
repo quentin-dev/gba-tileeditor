@@ -1,11 +1,8 @@
-Todo list for this program:
----------------------------
+# Todo list for this program:
 
 1. Figure out how to use 128 by 128 maps properly, also test 16 by 16 at that point.
 2. Add a "shift" feature which will shift the map around horizontally or
    vertically.  This will facilitate lining maps up on the edges right.
 3. Add a multi-tile select along with copy and paster feature.  This will be
    tricky, but make the program *much* more pleasant to use.
-
-
-
+4. Update C++ usage, from C-style to modern C++
