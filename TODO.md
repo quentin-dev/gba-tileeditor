@@ -7,3 +7,5 @@
    tricky, but make the program *much* more pleasant to use.
 4. Update C++ usage, from C-style to modern C++
 5. Update README, add usage instructions and / or tutorials
+6. Update project architecture, change file extensions to .cc/.hh and sources to a
+   reserved folder
