@@ -26,7 +26,7 @@ class Map {
         int* lookup_tile(int& sb, int& row, int& col, int& above, int& left);
 
         void write_header(const std::string& filename);
-        void write_data(const std::string& filename, bool header_only = false);
+        // void write_data(const std::string& filename, bool header_only = false);
 
     public:
         Map(int width, int height, bool regular);
@@ -38,6 +38,7 @@ class Map {
 
         /* load/save the map from/to a file */
         void write(const std::string& filename);
+        void write_data(const std::string& filename, bool header_only = false);
         bool read(const std::string& filename);
 
         /* set a tile in the map to a new value */

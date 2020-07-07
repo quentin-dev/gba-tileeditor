@@ -326,63 +326,8 @@ void Map::write_data(const std::string &filename, bool header_only)
 
 /* write this map into a file */
 void Map::write(const std::string& filename) {
-    FILE* f = fopen(filename.c_str(), "w");
-
     write_header(filename);
     write_data(filename);
-
-    /* find the name which is filename with .h cut off */
-    QFileInfo info(filename.c_str());
-    std::string name = info.baseName().toStdString();
-
-    /* write preamble stuff */
-    fprintf(f, "/* Created by GBA Tile Editor\n");
-    fprintf(f, "   %s map */\n\n", regular ? "Regular" : "Affine");
-    fprintf(f, "#define %s_width %d\n", name.c_str(), width);
-    fprintf(f, "#define %s_height %d\n\n", name.c_str(), height);
-
-    /* affine backgrounds are 8-bit values, regular are 16-bit */
-    if (!regular) {
-        fprintf(f, "const unsigned char %s [] = {\n    ", name.c_str());
-    } else {
-        fprintf(f, "const unsigned short %s [] = {\n    ", name.c_str());
-    }
-
-    /* start line break counter */
-    int counter = 0;
-
-    /* start the complex indexing loop operation */
-    int sb = 0;
-    int above = 0;
-    int left = 0;
-    int row = 0;
-    int col = 0;
-    int* tile;
-
-    /* grab the next tile we need to write into */
-    while ((tile = lookup_tile(sb, row, col, above, left))) {
-        /* dump it into the file
-         * regular backgrounds use 16-bit indices, affine ones use 8-bit ones */
-        if (!regular) {
-            fprintf(f, "0x%02x, ", (unsigned char)(*tile));
-        } else {
-            fprintf(f, "0x%04x, ", (unsigned short)(*tile));
-        }
-
-        counter++;
-        if (counter >= 9) {
-            fprintf(f, "\n    ");
-            counter = 0;
-        }
-    }
-
-    /* write postamble stuff */
-    if (counter) {
-        fprintf(f, "\n");
-    }
-    fprintf(f, "};\n\n");
-
-    fclose(f);
 }
 
 /* modify the tile */

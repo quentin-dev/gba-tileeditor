@@ -7,10 +7,13 @@
 
 #include "ui_mainwindow.h"
 #include "map.h"
+#include "command.h"
 
 #include <QString>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <map>
+#include <memory>
 
 class EditorWindow : public QMainWindow {
     Q_OBJECT
@@ -41,6 +44,8 @@ class EditorWindow : public QMainWindow {
         bool filename_valid;
         QString  filename;
         QString chosen_save_filter;
+
+        std::map<std::string, std::shared_ptr<Command>> filters;
 
         /* used for saving stuff */
         QString get_save_name();

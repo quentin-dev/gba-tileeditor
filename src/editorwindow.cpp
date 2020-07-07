@@ -11,6 +11,10 @@
 #include "ui_mainwindow.h"
 #include "ui_newmap.h"
 
+
+#include "saveheadercommand.h"
+#include "savesourcescommand.h"
+
 /* shows a generic popup message */
 void popup(const char* message) {
     QMessageBox msgBox;
@@ -31,6 +35,10 @@ EditorWindow::EditorWindow(QApplication* app) {
     just_saved = true;
     zoom_factor = 2;
     filename_valid = false;
+
+    filters["Map Headers (*.h)"] = std::make_shared<SaveHeaderCommand>();
+    filters["Map Source Files (*.h & *.c)"] = std::make_shared<SaveSourcesCommand>();
+
 }
 
 /* set the map and palette areas */
@@ -231,7 +239,7 @@ QString EditorWindow::get_save_name() {
 /* actually perform the save */
 void EditorWindow::save_to_file() {
     if (map) {
-        map->write(filename.toStdString());
+        filters[chosen_save_filter.toStdString()]->execute(*map, filename.toStdString());
         just_saved = true;
     } else {
         popup("There is nothing to save yet!");

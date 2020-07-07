@@ -18,10 +18,13 @@ SOURCES += src/main.cpp \
           src/map.cpp
 
 HEADERS += src/editorwindow.h \
+          src/command.h \
           src/newdialog.h \
           src/paletteview.h \
           src/mapview.h \
-          src/map.h
+          src/map.h \
+          src/saveheadercommand.h \
+          src/savesourcescommand.h
 
 INCLUDEPATH += src
 
