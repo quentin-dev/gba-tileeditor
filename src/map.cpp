@@ -9,6 +9,7 @@
 #include <sstream>
 #include <string>
 #include "map.h"
+#include "json.hpp"
 
 /* construct a new map of a given size, and set to all zeroes */
 Map::Map(int width, int height, bool regular) {
@@ -324,8 +325,71 @@ void Map::write_data(const std::string &filename, bool header_only)
     data_file << "};\n\n";
 }
 
+void Map::to_json(nlohmann::json& json)
+{
+
+    std::vector<int> vector_tiles;
+
+    for (int i = 0; i < width * height; ++i)
+    {
+        vector_tiles.push_back(tiles[i]);
+    }
+
+    json = nlohmann::json{
+            {"width", width},
+            {"height", height},
+            {"regular", regular},
+            {"tiles", vector_tiles},
+        };
+}
+
+void Map::to_json_file(const std::string& filename)
+{
+
+    QFileInfo info(filename.c_str());
+    std::string name(info.baseName().toStdString());
+
+    std::string complete_path(info.path().toStdString() + '/' + name + ".json");
+
+    std::ofstream file(complete_path);
+    nlohmann::json json;
+    this->to_json(json);
+
+    file << std::setw(4) << json << '\n';
+}
+
+bool Map::from_json(nlohmann::json& json)
+{
+    json.at("width").get_to(this->width);
+    json.at("height").get_to(this->height);
+    json.at("regular").get_to(this->regular);
+
+    std::vector<int> vector_tiles = json.at("tiles").get<std::vector<int>>();
+
+    this->tiles = new int[width * height];
+
+    for (std::size_t i = 0; i < vector_tiles.size(); ++i)
+    {
+        tiles[i] = vector_tiles.at(i);
+    }
+
+    return true;
+}
+
+bool Map::from_json_file(const std::string& filename)
+{
+    std::ifstream file(filename);
+
+    nlohmann::json json;
+    file >> json;
+
+    return this->from_json(json);
+}
+
 /* write this map into a file */
 void Map::write(const std::string& filename) {
+
+    this->to_json_file(filename);
     write_header(filename);
     write_data(filename);
 }
@@ -403,7 +467,10 @@ void Map::undo() {
     if (undo_stack.empty()) {
         return;
     }
+nlohmann::json j;
 
+    this->to_json(j);
+    std::cout << j << '\n';
     /* pop off the last one */
     int* restore = undo_stack.top();
     undo_stack.pop();

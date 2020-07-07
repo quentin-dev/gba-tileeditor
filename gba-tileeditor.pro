@@ -24,7 +24,9 @@ HEADERS += src/editorwindow.h \
           src/mapview.h \
           src/map.h \
           src/saveheadercommand.h \
-          src/savesourcescommand.h
+          src/savesourcescommand.h \
+          src/savejsoncommand.h \
+          src/json.hpp
 
 INCLUDEPATH += src
 

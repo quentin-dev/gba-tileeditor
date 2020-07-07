@@ -8,6 +8,7 @@
 #include <QPixmap>
 #include <string>
 #include <stack>
+#include "json.hpp"
 
 class Map {
     private:
@@ -26,7 +27,9 @@ class Map {
         int* lookup_tile(int& sb, int& row, int& col, int& above, int& left);
 
         void write_header(const std::string& filename);
-        // void write_data(const std::string& filename, bool header_only = false);
+
+        void to_json(nlohmann::json& json);
+        bool from_json(nlohmann::json& json);
 
     public:
         Map(int width, int height, bool regular);
@@ -44,6 +47,9 @@ class Map {
         /* set a tile in the map to a new value */
         void set_tile(int index, int tile_no);
 
+        bool from_json_file(const std::string& filename);
+        void to_json_file(const std::string& filename);
+
         /* get the dimensions */
         int get_width();
         int get_height();
@@ -54,5 +60,3 @@ class Map {
 };
 
 #endif
-
-

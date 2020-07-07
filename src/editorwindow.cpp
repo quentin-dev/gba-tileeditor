@@ -14,6 +14,7 @@
 
 #include "saveheadercommand.h"
 #include "savesourcescommand.h"
+#include "savejsoncommand.h"
 
 /* shows a generic popup message */
 void popup(const char* message) {
@@ -38,6 +39,7 @@ EditorWindow::EditorWindow(QApplication* app) {
 
     filters["Map Headers (*.h)"] = std::make_shared<SaveHeaderCommand>();
     filters["Map Source Files (*.h & *.c)"] = std::make_shared<SaveSourcesCommand>();
+    filters["Serialized map data (*.json)"] = std::make_shared<SaveJsonCommand>();
 
 }
 
@@ -213,14 +215,15 @@ void EditorWindow::on_open() {
     }
 
     /* get the file name */
-    filename = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Map Headers (*.h)"));
+    filename = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Serialized map data (*.json);;All files (*)"));
     if (filename != "") {
         filename_valid = true;
         if (map) {
             delete map;
         }
         map = new Map();
-        if (map->read(filename.toStdString())) {
+        // if (map->read(filename.toStdString())) {
+        if (map->from_json_file(filename.toStdString())) {
             /* apply the map */
             refresh_map();
             just_saved = true;
@@ -232,7 +235,12 @@ void EditorWindow::on_open() {
 
 /* used for saving stuff */
 QString EditorWindow::get_save_name() {
-    QString f = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("Map Headers (*.h);;Map Source Files (*.h & *.c)"), &chosen_save_filter);
+    QString f = QFileDialog::getSaveFileName(
+                    this,
+                    tr("Save File"), "",
+                    tr("Map Headers (*.h);;Map Source Files (*.h & *.c);;Serialized map data (*.json)"),
+                    &chosen_save_filter
+                );
     return f;
 }
 
