@@ -36,6 +36,7 @@ EditorWindow::EditorWindow(QApplication* app) {
     just_saved = true;
     zoom_factor = 2;
     filename_valid = false;
+    default_save_filter = "Serialized map data (*.json)";
 
     filters["Map Headers (*.h)"] = std::make_shared<SaveHeaderCommand>();
     filters["Map Source Files (*.h & *.c)"] = std::make_shared<SaveSourcesCommand>();
@@ -247,7 +248,14 @@ QString EditorWindow::get_save_name() {
 /* actually perform the save */
 void EditorWindow::save_to_file() {
     if (map) {
-        filters[chosen_save_filter.toStdString()]->execute(*map, filename.toStdString());
+        if (!chosen_save_filter.isNull() && !chosen_save_filter.trimmed().isEmpty())
+        {
+            filters[chosen_save_filter.toStdString()]->execute(*map, filename.toStdString());
+        }
+        else
+        {
+            filters[default_save_filter]->execute(*map, filename.toStdString());
+        }
         just_saved = true;
     } else {
         popup("There is nothing to save yet!");
@@ -267,7 +275,6 @@ void EditorWindow::on_save() {
 void EditorWindow::on_save_as() {
     filename_valid = true;
     filename = get_save_name();
-    // std::cout << chosen_save_filter.toStdString() << '\n';
     if (filename != "") {
         save_to_file();
     }

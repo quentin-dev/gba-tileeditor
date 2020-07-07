@@ -44,6 +44,7 @@ class EditorWindow : public QMainWindow {
         bool filename_valid;
         QString  filename;
         QString chosen_save_filter;
+        std::string default_save_filter;
 
         std::map<std::string, std::shared_ptr<Command>> filters;
 
