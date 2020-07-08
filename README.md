@@ -1,6 +1,10 @@
 # gba-tileeditor
 A simple tile editor for the Game Boy Advance.
 
+## Badges
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/21d36801cdfb4bfcac550b31ab9eb619)](https://www.codacy.com/manual/quentin-dev/gba-tileeditor?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=quentin-dev/gba-tileeditor&amp;utm_campaign=Badge_Grade)
+
 ## Info
 
 This project is a fork of Ian Finlayson's GBA Tile Editor. The goal of
