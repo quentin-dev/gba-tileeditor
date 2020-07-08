@@ -13,6 +13,11 @@ untouched for the last two years.
 
 - [X] Export to C source files (.c & .h)
 
+## Upcoming
+
+You can check out the project's [Trello](https://trello.com/b/py7VmhQo/gba-tile-editor)
+board to see what the features being worked on and the overall progress.
+
 ## Installing
 
 ### Arch Linux
