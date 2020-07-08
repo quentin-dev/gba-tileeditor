@@ -112,7 +112,8 @@ void EditorWindow::refresh_palette()
     if (grid_mode)
     {
         p = QPixmap::fromImage(tiles_grid);
-    } else
+    }
+    else
     {
         p = QPixmap::fromImage(tiles);
     }
@@ -180,7 +181,8 @@ void EditorWindow::on_new()
                 map = new Map(64, 64, true);
                 break;
             }
-        } else
+        }
+        else
         {
             switch (choice)
             {
@@ -290,7 +292,8 @@ void EditorWindow::on_open()
             /* apply the map */
             refresh_map();
             just_saved = true;
-        } else
+        }
+        else
         {
             popup("The file does not appear to be a valid map header");
         }
@@ -318,12 +321,14 @@ void EditorWindow::save_to_file()
         {
             filters[chosen_save_filter.toStdString()]->execute(
                 *map, filename.toStdString());
-        } else
+        }
+        else
         {
             filters[default_save_filter]->execute(*map, filename.toStdString());
         }
         just_saved = true;
-    } else
+    }
+    else
     {
         popup("There is nothing to save yet!");
     }
@@ -335,7 +340,8 @@ void EditorWindow::on_save()
     if (filename_valid)
     {
         save_to_file();
-    } else
+    }
+    else
     {
         on_save_as();
     }

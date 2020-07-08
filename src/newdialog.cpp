@@ -72,7 +72,8 @@ int NewDialog::get_selection()
     if (success)
     {
         return option;
-    } else
+    }
+    else
     {
         return -1;
     }

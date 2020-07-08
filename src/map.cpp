@@ -158,7 +158,8 @@ int* Map::lookup_tile(int& sb, int& row, int& col, int& above, int& left)
         {
             left = 0;
             above++;
-        } else
+        }
+        else
         {
             left++;
         }
@@ -198,10 +199,12 @@ bool Map::read(const std::string& filename)
         if (type == "Regular")
         {
             this->regular = true;
-        } else if (type == "Affine")
+        }
+        else if (type == "Affine")
         {
             this->regular = false;
-        } else
+        }
+        else
         {
             return false;
         }
@@ -345,7 +348,8 @@ void Map::write_data(const std::string& filename, bool header_only)
         {
             data_file << "0x" << std::hex << std::setw(2) << std::setfill('0')
                       << static_cast<unsigned char>(*tile) << ", ";
-        } else
+        }
+        else
         {
             data_file << "0x" << std::hex << std::setw(4) << std::setfill('0')
                       << static_cast<unsigned short>(*tile) << ", ";
