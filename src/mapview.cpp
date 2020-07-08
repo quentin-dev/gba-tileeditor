@@ -1,34 +1,40 @@
 /* mapview.cpp
  * the map view implementation file */
 
-#include <stdio.h>
+#include <QFileDialog>
+#include <QMessageBox>
 #include <QMouseEvent>
 #include <QScrollBar>
-#include <QMessageBox>
-#include <QFileDialog>
+#include <stdio.h>
+
 #include "editorwindow.h"
 #include "newdialog.h"
 #include "ui_mainwindow.h"
 #include "ui_newmap.h"
 
-MapView::MapView(QWidget* parent) : QGraphicsView(parent), dragging(false) {
-
-}
+MapView::MapView(QWidget* parent)
+    : QGraphicsView(parent)
+    , dragging(false)
+{}
 
 /* tell the component about the window its in */
-void MapView::set_window(EditorWindow* window) {
+void MapView::set_window(EditorWindow* window)
+{
     this->window = window;
 }
 
 /* mouse handlers */
-void MapView::mouseMoveEvent(QMouseEvent* e) {
-    if(!dragging) {
+void MapView::mouseMoveEvent(QMouseEvent* e)
+{
+    if (!dragging)
+    {
         return;
     }
     updateMapAt(e);
 }
 
-void MapView::updateMapAt(QMouseEvent* e) {
+void MapView::updateMapAt(QMouseEvent* e)
+{
     /* find the position of our scroll bar */
     int scroll_x = horizontalScrollBar()->value();
     int scroll_y = verticalScrollBar()->value();
@@ -37,14 +43,16 @@ void MapView::updateMapAt(QMouseEvent* e) {
     window->map_click(e->x() + scroll_x, e->y() + scroll_y);
 }
 
-void MapView::mouseReleaseEvent(QMouseEvent* e) {
+void MapView::mouseReleaseEvent(QMouseEvent* e)
+{
     dragging = false;
 }
 
-void MapView::mousePressEvent(QMouseEvent* e) {
-    if (e->button() == Qt::LeftButton) {
+void MapView::mousePressEvent(QMouseEvent* e)
+{
+    if (e->button() == Qt::LeftButton)
+    {
         dragging = true;
     }
     updateMapAt(e);
 }
-

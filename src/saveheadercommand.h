@@ -3,16 +3,16 @@
 
 #include "command.h"
 
-class SaveHeaderCommand: public Command
+class SaveHeaderCommand : public Command
 {
-    public:
-        SaveHeaderCommand() = default;
-        ~SaveHeaderCommand() = default;
+public:
+    SaveHeaderCommand() = default;
+    ~SaveHeaderCommand() = default;
 
-        void execute(Map &map, const std::string &filename) override final
-        {
-            map.write_data(filename, true);
-        }
+    void execute(Map& map, const std::string& filename) override final
+    {
+        map.write_data(filename, true);
+    }
 };
 
 #endif // SAVEHEADERCOMMAND_H

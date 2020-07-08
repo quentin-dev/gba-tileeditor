@@ -1,21 +1,23 @@
 /* main.cpp
  * main function for the tile editor GUI */
 
-#include <stdio.h>
-#include <QMouseEvent>
-#include <QMessageBox>
 #include <QFileDialog>
+#include <QMessageBox>
+#include <QMouseEvent>
+#include <stdio.h>
+
 #include "editorwindow.h"
 #include "newdialog.h"
 #include "ui_mainwindow.h"
 #include "ui_newmap.h"
 
 /* main entry point */
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
     /* pass flags to QT */
     QApplication app(argc, argv);
 
-    /* load the main window ui from the one QT generates from the ui file */ 
+    /* load the main window ui from the one QT generates from the ui file */
     EditorWindow* window = new EditorWindow(&app);
     Ui_MainWindow ui;
     /* ignore garbage warnings from QT */
@@ -26,7 +28,7 @@ int main(int argc, char** argv) {
     /* set up all the triggers */
     window->setup_triggers(&ui);
 
-    /* set up the graphics areas */ 
+    /* set up the graphics areas */
     QGraphicsScene* map_scene = new QGraphicsScene(window);
     QGraphicsScene* palette_scene = new QGraphicsScene(window);
     window->set_areas(map_scene, palette_scene);
@@ -36,7 +38,7 @@ int main(int argc, char** argv) {
     ui.actionOpen->setIcon(QIcon(":/icons/open.png"));
     ui.actionSave->setIcon(QIcon(":/icons/save.png"));
     ui.actionSave_As->setIcon(QIcon(":/icons/save-as.png"));
-    ui.actionChange_Properties->setIcon(QIcon(":/icons/change-properties.png")); 
+    ui.actionChange_Properties->setIcon(QIcon(":/icons/change-properties.png"));
     ui.actionQuit->setIcon(QIcon(":/icons/quit.png"));
     ui.actionUndo->setIcon(QIcon(":/icons/undo.png"));
     ui.actionRedo->setIcon(QIcon(":/icons/redo.png"));
@@ -63,4 +65,3 @@ int main(int argc, char** argv) {
     /* start the program */
     return app.exec();
 }
-

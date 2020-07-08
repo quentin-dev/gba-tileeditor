@@ -3,16 +3,16 @@
 
 #include "command.h"
 
-class SaveJsonCommand: public Command
+class SaveJsonCommand : public Command
 {
-    public:
-        SaveJsonCommand() = default;
-        ~SaveJsonCommand() = default;
+public:
+    SaveJsonCommand() = default;
+    ~SaveJsonCommand() = default;
 
-        void execute(Map &map, const std::string &filename) override final
-        {
-            map.to_json_file(filename);
-        }
+    void execute(Map& map, const std::string& filename) override final
+    {
+        map.to_json_file(filename);
+    }
 };
 
 #endif // SAVEJSONCOMMAND_H

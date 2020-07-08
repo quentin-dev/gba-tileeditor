@@ -9,17 +9,17 @@
 
 class EditorWindow;
 
-class PaletteView : public QGraphicsView {
+class PaletteView : public QGraphicsView
+{
     Q_OBJECT
 
-    private:
-        EditorWindow* window;
+private:
+    EditorWindow* window;
 
-    public:
-        PaletteView(QWidget* parent);
-        void set_window(EditorWindow* window);
-        void mousePressEvent (QMouseEvent* event);
+public:
+    PaletteView(QWidget* parent);
+    void set_window(EditorWindow* window);
+    void mousePressEvent(QMouseEvent* event);
 };
 
 #endif
-
