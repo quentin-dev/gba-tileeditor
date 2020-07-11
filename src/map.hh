@@ -1,8 +1,8 @@
-/* map.h
+/* map.hh
  * the actual map model which stores the tile information */
 
-#ifndef MAP_H
-#define MAP_H
+#ifndef MAP_HH
+#define MAP_HH
 
 #include <QImage>
 #include <QPixmap>

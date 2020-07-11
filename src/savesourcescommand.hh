@@ -1,7 +1,7 @@
-#ifndef SAVESOURCESCOMMAND_H
-#define SAVESOURCESCOMMAND_H
+#ifndef SAVESOURCESCOMMAND_HH
+#define SAVESOURCESCOMMAND_HH
 
-#include "command.h"
+#include "command.hh"
 
 class SaveSourcesCommand : public Command
 {
@@ -15,4 +15,4 @@ public:
     }
 };
 
-#endif // SAVESOURCESCOMMAND_H
+#endif // SAVESOURCESCOMMAND_HH

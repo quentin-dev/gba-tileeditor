@@ -10,23 +10,25 @@ TARGET = gba-tileeditor
 TEMPLATE = app
 
 # specify all the files we need
-SOURCES += src/main.cpp \
-          src/editorwindow.cpp \
-          src/newdialog.cpp \
-          src/paletteview.cpp \
-          src/mapview.cpp \
-          src/map.cpp
+SOURCES += \
+          src/editorwindow.cc \
+          src/main.cc \
+          src/map.cc \
+          src/mapview.cc \
+          src/newdialog.cc \
+          src/paletteview.cc
 
-HEADERS += src/editorwindow.h \
-          src/command.h \
-          src/newdialog.h \
-          src/paletteview.h \
-          src/mapview.h \
-          src/map.h \
-          src/saveheadercommand.h \
-          src/savesourcescommand.h \
-          src/savejsoncommand.h \
-          src/json.hpp
+HEADERS += \
+          src/command.hh \
+          src/editorwindow.hh \
+          src/map.hh \
+          src/mapview.hh \
+          src/newdialog.hh \
+          src/paletteview.hh \
+          src/saveheadercommand.hh \
+          src/savejsoncommand.hh \
+          src/json.hpp \
+          src/savesourcescommand.hh
 
 INCLUDEPATH += src
 

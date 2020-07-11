@@ -1,7 +1,7 @@
-#ifndef SAVEHEADERCOMMAND_H
-#define SAVEHEADERCOMMAND_H
+#ifndef SAVEHEADERCOMMAND_HH
+#define SAVEHEADERCOMMAND_HH
 
-#include "command.h"
+#include "command.hh"
 
 class SaveHeaderCommand : public Command
 {
@@ -15,4 +15,4 @@ public:
     }
 };
 
-#endif // SAVEHEADERCOMMAND_H
+#endif // SAVEHEADERCOMMAND_HH

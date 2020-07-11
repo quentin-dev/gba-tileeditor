@@ -1,25 +1,29 @@
-/* paletteview.h
+/* mapview.hh
  * contains the class declarations
  * this has to be in a header file for QT to function */
 
-#ifndef PALETTEVIEW_H
-#define PALETTEVIEW_H
+#ifndef MAPVIEW_HH
+#define MAPVIEW_HH
 
 #include <QGraphicsView>
 
 class EditorWindow;
 
-class PaletteView : public QGraphicsView
+class MapView : public QGraphicsView
 {
     Q_OBJECT
 
 private:
     EditorWindow* window;
+    bool dragging;
+    void updateMapAt(QMouseEvent* event);
 
 public:
-    PaletteView(QWidget* parent);
+    MapView(QWidget* parent);
     void set_window(EditorWindow* window);
     void mousePressEvent(QMouseEvent* event);
+    void mouseReleaseEvent(QMouseEvent* event);
+    void mouseMoveEvent(QMouseEvent* event);
 };
 
 #endif

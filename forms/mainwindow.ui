@@ -221,12 +221,12 @@
   <customwidget>
    <class>MapView</class>
    <extends>QGraphicsView</extends>
-   <header>mapview.h</header>
+   <header>mapview.hh</header>
   </customwidget>
   <customwidget>
    <class>PaletteView</class>
    <extends>QGraphicsView</extends>
-   <header>paletteview.h</header>
+   <header>paletteview.hh</header>
   </customwidget>
  </customwidgets>
  <resources/>

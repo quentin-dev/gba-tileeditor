@@ -1,9 +1,9 @@
-/* newdialgo.h
+/* newdialgo.hh
  * contains the class declarations
  * this has to be in a header file for QT to function */
 
-#ifndef ND_H
-#define ND_H
+#ifndef ND_HH
+#define ND_HH
 
 #include <QGraphicsScene>
 #include <QGraphicsView>

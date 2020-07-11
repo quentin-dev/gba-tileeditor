@@ -1,7 +1,7 @@
-#ifndef SAVEJSONCOMMAND_H
-#define SAVEJSONCOMMAND_H
+#ifndef SAVEJSONCOMMAND_HH
+#define SAVEJSONCOMMAND_HH
 
-#include "command.h"
+#include "command.hh"
 
 class SaveJsonCommand : public Command
 {

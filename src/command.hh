@@ -1,9 +1,9 @@
-#ifndef COMMAND_H
-#define COMMAND_H
+#ifndef COMMAND_HH
+#define COMMAND_HH
 
 #include <string>
 
-#include "map.h"
+#include "map.hh"
 
 class Command
 {
@@ -13,4 +13,4 @@ public:
     virtual void execute(Map& map, const std::string& filename) = 0;
 };
 
-#endif // COMMAND_H
+#endif // COMMAND_HH

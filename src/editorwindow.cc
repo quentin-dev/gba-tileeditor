@@ -1,7 +1,7 @@
-/* editorwindow.cpp
+/* editorwindow.cc
  * implementation fle for the main editor window */
 
-#include "editorwindow.h"
+#include "editorwindow.hh"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -9,10 +9,10 @@
 #include <iostream>
 #include <stdio.h>
 
-#include "newdialog.h"
-#include "saveheadercommand.h"
-#include "savejsoncommand.h"
-#include "savesourcescommand.h"
+#include "newdialog.hh"
+#include "saveheadercommand.hh"
+#include "savejsoncommand.hh"
+#include "savesourcescommand.hh"
 #include "ui_mainwindow.h"
 #include "ui_newmap.h"
 

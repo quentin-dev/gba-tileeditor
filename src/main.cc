@@ -1,4 +1,4 @@
-/* main.cpp
+/* main.cc
  * main function for the tile editor GUI */
 
 #include <QFileDialog>
@@ -6,8 +6,8 @@
 #include <QMouseEvent>
 #include <stdio.h>
 
-#include "editorwindow.h"
-#include "newdialog.h"
+#include "editorwindow.hh"
+#include "newdialog.hh"
 #include "ui_mainwindow.h"
 #include "ui_newmap.h"
 

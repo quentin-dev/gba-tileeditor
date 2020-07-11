@@ -1,14 +1,14 @@
-/* newdialog.cpp
+/* newdialog.cc
  * implementation of new map dialog class */
 
-#include "newdialog.h"
+#include "newdialog.hh"
 
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <stdio.h>
 
-#include "editorwindow.h"
+#include "editorwindow.hh"
 #include "ui_mainwindow.h"
 #include "ui_newmap.h"
 

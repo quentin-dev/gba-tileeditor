@@ -1,4 +1,4 @@
-/* mapview.cpp
+/* mapview.cc
  * the map view implementation file */
 
 #include <QFileDialog>
@@ -7,8 +7,8 @@
 #include <QScrollBar>
 #include <stdio.h>
 
-#include "editorwindow.h"
-#include "newdialog.h"
+#include "editorwindow.hh"
+#include "newdialog.hh"
 #include "ui_mainwindow.h"
 #include "ui_newmap.h"
 

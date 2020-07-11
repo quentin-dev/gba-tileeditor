@@ -1,7 +1,7 @@
-/* map.cpp
+/* map.cc
  * the actual map model which stores the tile information */
 
-#include "map.h"
+#include "map.hh"
 
 #include <QFileInfo>
 #include <fstream>

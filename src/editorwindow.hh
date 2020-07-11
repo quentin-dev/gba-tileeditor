@@ -1,9 +1,9 @@
-/* main.h
+/* editorwindow.hh
  * contains the class declarations
  * this has to be in a header file for QT to function */
 
-#ifndef EDITOR_WINDOW_H
-#define EDITOR_WINDOW_H
+#ifndef EDITOR_WINDOW_HH
+#define EDITOR_WINDOW_HH
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -11,8 +11,8 @@
 #include <map>
 #include <memory>
 
-#include "command.h"
-#include "map.h"
+#include "command.hh"
+#include "map.hh"
 #include "ui_mainwindow.h"
 
 class EditorWindow : public QMainWindow
