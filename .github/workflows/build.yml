@@ -11,6 +11,8 @@ jobs:
         steps:
             - name: Install Qt
               run: sudo apt install qt5-default
+            - name: ls
+              run: ls -la
             - name: Build gba-tileeditor
               run: qmake gba-tileeditor.pro & make -j$(nproc)
             - name: Upload executable
