@@ -11,6 +11,8 @@ jobs:
               run: sudo apt install qt5-default
             - name: Checkout repository
               uses: actions/checkout@v2
+            - name: Get version number
+              run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
             - name: Generate Makefile
               run: qmake gba-tileeditor.pro
             - name: Build gba-tileeditor
@@ -35,5 +37,5 @@ jobs:
               with:
                 upload_url: ${{ steps.create_release.outputs.upload_url }}
                 asset_path: release.zip
-                asset_name: release-${{ github.ref }}.zip
+                asset_name: release-${{ env.RELEASE_VERSION }}.zip
                 asset_content_type: application/zip
