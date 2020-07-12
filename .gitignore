@@ -11,3 +11,6 @@ gba-tileeditor
 moc_predefs.h
 *.pro.user
 .gdb_history
+
+# VS Code files
+.vscode/
