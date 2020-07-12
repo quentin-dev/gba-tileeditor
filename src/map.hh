@@ -44,7 +44,6 @@ public:
     /* load/save the map from/to a file */
     void write(const std::string& filename);
     void write_data(const std::string& filename, bool header_only = false);
-    bool read(const std::string& filename);
 
     /* set a tile in the map to a new value */
     void set_tile(int index, int tile_no);
