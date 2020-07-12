@@ -13,10 +13,10 @@ jobs:
               run: sudo apt install qt5-default
             - name: Checkout repository
               uses: actions/checkout@v2
-            - name: ls
-              run: ls -la
+            - name: Generate Makefile
+              run: qmake gba-tileeditor.pro
             - name: Build gba-tileeditor
-              run: qmake gba-tileeditor.pro & make -j$(nproc)
+              run: make -j$(nproc)
             - name: Upload executable
               uses: actions/upload-artifact@v2
               with:
