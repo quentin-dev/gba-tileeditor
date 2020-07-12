@@ -11,6 +11,8 @@ jobs:
         steps:
             - name: Install Qt
               run: sudo apt install qt5-default
+            - name: Checkout repository
+              uses: actions/checkout@v2
             - name: ls
               run: ls -la
             - name: Build gba-tileeditor
