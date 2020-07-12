@@ -12,7 +12,7 @@ jobs:
             - name: Install Qt
               run: sudo apt install qt5-default
             - name: Build gba-tileeditor
-              run: qmake & make -j$(nproc)
+              run: qmake gba-tileeditor.pro & make -j$(nproc)
             - name: Upload executable
               uses: actions/upload-artifact@v2
               with:
