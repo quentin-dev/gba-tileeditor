@@ -1,10 +1,8 @@
 name: Build GBA Tile Editor
 on:
     push:
-        branches:
-            - master
         tags:
-            - v*
+            - 'v*'
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -17,8 +15,23 @@ jobs:
               run: qmake gba-tileeditor.pro
             - name: Build gba-tileeditor
               run: make -j$(nproc)
-            - name: Upload executable
-              uses: actions/upload-artifact@v2
+            - name: Create GBA Tile Editor Release
+              id: create_release
+              uses: actions/create-release@v1
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                name: gba-tileeditor
-                path: gba-tileeditor
+                tag_name: ${{ github.ref }}
+                release_name: Release ${{ github.ref }}
+                draft: false
+                prerelease: false
+            - name: Upload GBA Tile Editor Release
+              id: upload-release-asset 
+              uses: actions/upload-release-asset@v1
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                upload_url: ${{ steps.create_release.outputs.upload_url }}
+                asset_path: ./gba-tileeditor
+                asset_name: release-${{ github.ref }}.zip
+                asset_content_type: application/zip
