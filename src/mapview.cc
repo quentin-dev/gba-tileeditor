@@ -45,6 +45,7 @@ void MapView::updateMapAt(QMouseEvent* e)
 
 void MapView::mouseReleaseEvent(QMouseEvent* e)
 {
+    Q_UNUSED(e);
     dragging = false;
 }
 
