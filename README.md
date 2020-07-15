@@ -16,17 +16,25 @@ untouched for the last two years.
 ## Features
 
 - [X] Export to C source files (.c & .h)
+- [X] Serialize maps to JSON for saving & loading
 
 ## Upcoming
 
 You can check out the project's [Trello](https://trello.com/b/py7VmhQo/gba-tile-editor)
-board to see what the features being worked on and the overall progress.
+board to see what the features being worked on and the overall progress. You can also
+check out the project's `TODO.md`.
 
 ## Installing
 
 ### Arch Linux
 
-This package is available on the AUR as `gba-tileeditor-git`.
+GBA Tile Editor is available on the AUR in two different packages:
+
+- The development version: [`gba-tileeditor-git`](https://aur.archlinux.org/packages/gba-tileeditor-git/)
+- The release version: [`gba-tileeditor`](https://aur.archlinux.org/packages/gba-tileeditor/)
+
+The development version of the package is available on the AUR as 
+
 
 ### Other Linux distributions
 
@@ -37,11 +45,7 @@ This package is available on the AUR as `gba-tileeditor-git`.
 #### Instructions
 
 1. Clone the repo and `cd` into it
-2. `qmake gba-tileeditor.pro`
+2. `qmake gba-tileeditor-client/gba-tileeditor-client.pro`
 3. `make -j$(nproc)`
 
 You can then run the program with `./gba-tileeditor`
-
-## Planned
-
-See the repo's TODO.md for what might come next.
