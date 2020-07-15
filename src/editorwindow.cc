@@ -81,6 +81,9 @@ void EditorWindow::setup_triggers(Ui_MainWindow* ui)
                      SLOT(on_grid()));
 
     activeTileInToolbarAction = ui->toolBar->addAction("");
+
+    ui->splitter->setStretchFactor(0, 4);
+    ui->splitter->setStretchFactor(1, 1);
 }
 
 /* refresh the map area */
