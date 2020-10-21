@@ -17,8 +17,8 @@ A simple tile editor for the Game Boy Advance.
 
 ## Info
 
-This project is a fork of Ian Finlayson's GBA Tile Editor. The goal of
-this fork is to update the existing codebase and add features to the
+This project is a fork of Ian Finlayson's [GBA Tile Editor](https://github.com/IanFinlayson/gba-tileeditor).
+The goal of this fork is to update the existing codebase and add features to the
 existing program. As of writing this, the project was just recently forked
 and has not been renamed or anything yet, as the original project has been
 untouched for the last two years.
@@ -42,9 +42,6 @@ GBA Tile Editor is available on the AUR in two different packages:
 
 - The development version: [`gba-tileeditor-git`](https://aur.archlinux.org/packages/gba-tileeditor-git/)
 - The release version: [`gba-tileeditor`](https://aur.archlinux.org/packages/gba-tileeditor/)
-
-The development version of the package is available on the AUR as 
-
 
 ### Other Linux distributions
 
