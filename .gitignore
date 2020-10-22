@@ -12,5 +12,8 @@ moc_predefs.h
 *.pro.user
 .gdb_history
 
+# Ignore build dir
+**/build/
+
 # VS Code files
 .vscode/
