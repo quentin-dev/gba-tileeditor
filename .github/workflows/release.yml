@@ -12,9 +12,9 @@ jobs:
             - name: Checkout repository 📩
               uses: actions/checkout@v2
             - name: Generate Makefile ⚙️
-              run: qmake gba-tileeditor-client/gba-tileeditor-client.pro
+              run: cmake -S . -B build
             - name: Build gba-tileeditor 🛠️
-              run: make -j$(nproc)
+              run: cmake --build build -j$(nproc)
             - name: Get version number #️⃣
               run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
             - name: Compress executable 🗜️
