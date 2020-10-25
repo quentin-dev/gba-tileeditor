@@ -4,11 +4,11 @@ jobs:
     build:
         runs-on: ubuntu-20.04
         steps:
-            - name: Install Qt 💻
-              run: sudo apt install qt5-default
+            - name: Install build dependencies 💻
+              run: sudo apt install qt5-default cmake
             - name: Checkout repository 📩
               uses: actions/checkout@v2
             - name: Generate Makefile ⚙️
-              run: qmake gba-tileeditor-client/gba-tileeditor-client.pro
+              run: cmake -S . -B build
             - name: Build gba-tileeditor 🛠️
-              run: make -j$(nproc)
+              run: cmake --build build -j$(nproc)
