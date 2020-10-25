@@ -126,7 +126,7 @@ int* Map::lookup_tile(int& sb, int& row, int& col, int& above, int& left)
     if (row == 32)
     {
         /* if we just did the last screen block in a row of screen blocks */
-        int last;
+        int last = 0;
         switch (num_sbs)
         {
         case 1:
@@ -151,6 +151,8 @@ int* Map::lookup_tile(int& sb, int& row, int& col, int& above, int& left)
                 last = 0;
             break;
         }
+
+        // TODO: Add default case
 
         /* if it WAS the last in a row, none are left and one more is above
          * otherwise, one more is to the left */
