@@ -18,7 +18,7 @@ jobs:
             - name: Get version number #️⃣
               run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
             - name: Compress executable 🗜️
-              run: zip release.zip gba-tileeditor
+              run: zip release.zip build/gba-tileeditor-client/gba-tileeditor
             - name: Create GBA Tile Editor Release 🏷️
               id: create_release
               uses: actions/create-release@v1
