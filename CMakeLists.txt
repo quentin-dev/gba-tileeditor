@@ -22,4 +22,12 @@ endif()
 # Otherwise headers are not processed by AUTOMOC
 cmake_policy(SET CMP0100 NEW)
 
+find_package(Doxygen)
+
+if (DOXYGEN_FOUND)
+    set(DOXYGEN_GENERATE_LATEX NO)
+    set(DOXYGEN_USE_MDFILE_AS_MAINPAGE README.md)
+    doxygen_add_docs(doxygen ${SOURCES} COMMENT "Generate html documentation")
+endif()
+
 add_subdirectory(gba-tileeditor-client)
