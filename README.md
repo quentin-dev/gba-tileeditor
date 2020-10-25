@@ -47,12 +47,13 @@ GBA Tile Editor is available on the AUR in two different packages:
 
 #### Requirements
 
-* Qt 5
+- Qt 5
+- CMake
 
 #### Instructions
 
 1. Clone the repo and `cd` into it
-2. `qmake gba-tileeditor-client/gba-tileeditor-client.pro`
-3. `make -j$(nproc)`
+2. `cmake -S . -B build`
+3. `cmake --build build -j$(nproc)`
 
-You can then run the program with `./gba-tileeditor`
+You can then run the program with `./buid/gba-tileeditor-client/gba-tileeditor`
