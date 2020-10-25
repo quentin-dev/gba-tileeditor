@@ -57,7 +57,7 @@ set(INCLUDES
 # qt5_wrap_ui(UI_HEADERS ${FORMS})
 
 add_executable(${TARGET} "src/main.cc")
-target_sources(${TARGET} PRIVATE ${SOURCES} ${RESOURCE})
+target_sources(${TARGET} PRIVATE ${SOURCES} ${RESOURCE} ${FORMS})
 target_compile_options(${TARGET} PRIVATE -Wall -Wextra)
 target_include_directories(${TARGET} PRIVATE ${INCLUDES})
 
